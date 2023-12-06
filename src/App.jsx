@@ -1,4 +1,7 @@
 import { Container } from "react-bootstrap";
+import Formulario from '../src/components/Formulario'
+
+
 function App() {
   return (
     <>
@@ -7,7 +10,7 @@ function App() {
       </header>
 
       <Container>
-
+        <Formulario />
       </Container>
     </>
   )
