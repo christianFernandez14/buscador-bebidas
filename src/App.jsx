@@ -18,7 +18,7 @@ function App() {
         <Container className="mt-5">
 
           <Formulario />
-          
+
           <ListadoBebidas />
 
         </Container>
