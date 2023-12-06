@@ -1,6 +1,13 @@
 import { Button, Form, Row, Col, FormGroup, FormLabel, FormControl, FormSelect } from 'react-bootstrap'
+import useCategorias from '../hooks/useCategorias'
 
 const Formulario = () => {
+
+  const { categorias } = useCategorias()
+
+  console.log(categorias)
+
+
   return (
     <Form>
       <Row>
@@ -26,15 +33,31 @@ const Formulario = () => {
               name='categoria'
             >
               <option value="">- Selecciona la Categoría -</option>
+              {
+                categorias.map(categoria => (
+                  <option
+                    key={categoria.strCategory}
+                    value={categoria.strCategory}
+                  >{categoria.strCategory}</option>
+                ))
+
+              }
             </FormSelect>
           </FormGroup>
         </Col>
       </Row>
-      {/* <Button
-        as={'input'}
-        type={'button'}
-        value={'Buscar Bebida'}
-      /> */}
+
+      <Row className='justify-content-end'>
+        <Col md={3}>
+          <Button
+          variant='danger'
+          className='text-uppercase w-100'
+          >
+            Buscar Bebidas
+          </Button>
+        </Col>
+      </Row>
+
     </Form>
   )
 }
