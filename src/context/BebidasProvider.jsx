@@ -7,6 +7,7 @@ const BebidasProvider = ({ children }) => {
 
   const [bebidas, setBebidas] = useState([])
   const [totalBebidas, setTotalBebidas] = useState(0)
+  const [modal, setModal] = useState(false)
 
   const obtenerBebidas = async datos => {
 
@@ -24,12 +25,18 @@ const BebidasProvider = ({ children }) => {
     }
   }
 
+  const handleModalClick =()=> {
+    setModal(!modal)
+  }
+
   return (
     <BebidasContex.Provider
       value={{
         obtenerBebidas,
         bebidas,
-        totalBebidas
+        totalBebidas,
+        handleModalClick,
+        modal
       }}
     >
       {children}
