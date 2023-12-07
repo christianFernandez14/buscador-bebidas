@@ -6,11 +6,30 @@ const BebidasContex = createContext();
 const BebidasProvider = ({ children }) => {
 
   const [bebidas, setBebidas] = useState([])
-  const [totalBebidas, setTotalBebidas] = useState(0)
   const [modal, setModal] = useState(false)
+  const [bebidaId, setBebidaId] = useState(null)
+  const [receta, setReceta] = useState([])
+  const [totalBebidas, setTotalBebidas] = useState(0)
+
+  useEffect(() => {
+    const obtenerRecetaById = async () => {
+      if (!bebidaId) return
+      try {
+        const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${bebidaId}`
+        const { data } = await axios(URL)
+        const { drinks } = data
+
+        setReceta(drinks[0])
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    obtenerRecetaById()
+
+  }, [bebidaId])
 
   const obtenerBebidas = async datos => {
-
     try {
 
       const URL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${datos.nombre}&c=${datos.categoria}`
@@ -25,8 +44,12 @@ const BebidasProvider = ({ children }) => {
     }
   }
 
-  const handleModalClick =()=> {
+  const handleModalClick = () => {
     setModal(!modal)
+  }
+
+  const handleBebidaId = id => {
+    setBebidaId(id)
   }
 
   return (
@@ -35,8 +58,10 @@ const BebidasProvider = ({ children }) => {
         obtenerBebidas,
         bebidas,
         totalBebidas,
+        modal,
         handleModalClick,
-        modal
+        handleBebidaId,
+        receta
       }}
     >
       {children}

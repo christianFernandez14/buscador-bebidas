@@ -3,11 +3,10 @@ import useBebidas from "../hooks/useBebidas";
 
 const Bebida = ({ bebida }) => {
 
-  const { strDrink, strDrinkThumb } = bebida
+  const { idDrink, strDrink, strDrinkThumb } = bebida
 
-  const { handleModalClick } = useBebidas();
+  const { handleModalClick, handleBebidaId } = useBebidas();
 
-  console.log(bebida)
 
   return (
     <Col md={6} lg={3}>
@@ -28,7 +27,10 @@ const Bebida = ({ bebida }) => {
           <Button
             variant={'warning'}
             className="w-100 p-1 text-uppercase"
-            onClick={() => handleModalClick()}
+            onClick={() =>  {
+              handleModalClick()
+              handleBebidaId(idDrink)
+            }}
           >
             Ver Receta
           </Button>

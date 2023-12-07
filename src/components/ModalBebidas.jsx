@@ -4,7 +4,9 @@ import useBebidas from "../hooks/useBebidas";
 
 const ModalBebidas = () => {
 
-  const { modal, handleModalClick } = useBebidas();
+  const { modal, handleModalClick, receta } = useBebidas();
+
+  console.log(receta)
 
   return (
     <Modal show={modal} onHide={handleModalClick}>
