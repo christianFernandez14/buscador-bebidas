@@ -27,6 +27,9 @@ const BebidasProvider = ({ children }) => {
     }
     obtenerRecetaById()
 
+    // Veamos si lo explica en el video
+    return setReceta([]);
+
   }, [bebidaId])
 
   const obtenerBebidas = async datos => {
