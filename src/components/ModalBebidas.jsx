@@ -4,7 +4,7 @@ import useBebidas from "../hooks/useBebidas";
 
 const ModalBebidas = () => {
 
-  const { modal, handleModalClick, receta } = useBebidas();
+  const { modal, handleModalClick, receta, cargando } = useBebidas();
 
   const { strDrinkThumb, strInstructions, strDrink} = receta;
 
@@ -32,9 +32,9 @@ const ModalBebidas = () => {
         alt={`Imagen de la receta ${strDrink}`}
 
       />
-      <Modal.Header>
-        <Modal.Title>{strDrink}</Modal.Title>
-      </Modal.Header>
+      <ModalHeader>
+        <ModalTitle>{strDrink}</ModalTitle>
+      </ModalHeader>
 
       <Modal.Body>
         <div className="p-3">

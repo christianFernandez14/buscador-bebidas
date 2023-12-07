@@ -9,9 +9,11 @@ const BebidasProvider = ({ children }) => {
   const [modal, setModal] = useState(false)
   const [bebidaId, setBebidaId] = useState(null)
   const [receta, setReceta] = useState([])
+  const [cargando, setCargando] = useState(false)
   const [totalBebidas, setTotalBebidas] = useState(0)
 
   useEffect(() => {
+    setCargando(true)
     const obtenerRecetaById = async () => {
       if (!bebidaId) return
       try {
@@ -27,8 +29,8 @@ const BebidasProvider = ({ children }) => {
     }
     obtenerRecetaById()
 
-    // Veamos si lo explica en el video
-    return setReceta([]);
+    // No lo explico como esta forma, pero es otra manera de hacerlo
+    // return setReceta([]);
 
   }, [bebidaId])
 
@@ -44,6 +46,9 @@ const BebidasProvider = ({ children }) => {
 
     } catch (error) {
       console.log(error)
+
+    } finally{
+      setCargando(false)
     }
   }
 
@@ -60,11 +65,12 @@ const BebidasProvider = ({ children }) => {
       value={{
         obtenerBebidas,
         bebidas,
-        totalBebidas,
         modal,
         handleModalClick,
         handleBebidaId,
-        receta
+        receta,
+        cargando,
+        totalBebidas
       }}
     >
       {children}
